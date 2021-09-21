@@ -9,7 +9,7 @@
             {{-- Restaurant Type --}}
             <div class="col-span-6 sm:col-span-3">
                   <label for="rest_category" class="block text-sm font-medium text-gray-700">Restaurant Category</label>
-                  <input type="text" name="rest_category" id="rest_type"
+                  <input type="text" name="rest_category" id="rest_category"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
             {{-- Restaurant Address --}}
@@ -78,7 +78,6 @@
             </span>
             <input type="file" name="rest_logo" id="rest_logo"
                   class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Select
             </input>
       </div>
 </div>

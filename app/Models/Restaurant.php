@@ -11,7 +11,7 @@ class Restaurant extends Model
 
     protected $fillable = [
         'rest_name',
-        'rest_type',
+        'rest_category',
         'rest_address',
         'rest_city',
         'rest_charge',

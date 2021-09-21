@@ -1,5 +1,5 @@
 @if (session('success'))
-      <div class="alert alert-success">
+      <div class="alert alert-success mb-6">
             <div class="flex-1">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="flex-shrink-0 w-6 h-6 mx-2 stroke-current">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -24,7 +24,7 @@
 @endif
 
 @if (session('error'))
-      <div class="alert alert-error">
+      <div class="alert alert-error mb-6">
             <div class="flex-1">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="flex-shrink-0 w-6 h-6 mx-2 stroke-current">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -49,7 +49,7 @@
 @endif
 
 @if (session('status'))
-      <div class="alert alert-info">
+      <div class="alert alert-info mb-6">
             <div class="flex-1">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="flex-shrink-0 w-6 h-6 mx-2 stroke-current">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

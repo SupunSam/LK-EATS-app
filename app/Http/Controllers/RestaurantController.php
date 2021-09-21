@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FoodItem;
 use App\Models\Restaurant;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
@@ -16,15 +17,13 @@ class RestaurantController extends Controller
     // Restaurant List View
     public function index()
     {
-        // return view('restaurants.index');
-
-        // $restaurants = Restaurant::latest()->paginate(5);
-
-        // return view('restaurant.index', compact('restaurants'))
-        //     ->with('i', (request()->input('page', 1) - 1) * 5);
-
         $restaurants = Restaurant::orderBy('created_at', 'desc')->paginate(5);
         return view('restaurants.index')->with('restaurants', $restaurants);
+    }
+
+    public function myrest()
+    {
+        return view('restaurants.myrest');
     }
 
     public function create()
@@ -69,7 +68,7 @@ class RestaurantController extends Controller
             // Upload image
             $this->uploadOne($image, $folder, 'public', $name);
             // Set image path in database to filePath
-            $newRest->rest_logo = $filePath;
+            $newRest->rest_logo = 'storage' . $filePath;
         }
 
         // Check if a image has been uploaded
@@ -85,7 +84,7 @@ class RestaurantController extends Controller
             // Upload image
             $this->uploadOne($image, $folder, 'public', $name);
             // Set image path in database to filePath
-            $newRest->rest_cover = $filePath;
+            $newRest->rest_cover = 'storage' . $filePath;
         }
 
         $newRest->user_id = Auth::user()->id;
@@ -98,14 +97,17 @@ class RestaurantController extends Controller
 
     public function show($id)
     {
-        $restaurants = Restaurant::find($id);
-        return view('restaurants.show')->with('post', $restaurants);
+        $restaurant = Restaurant::find($id);
+        $fooditems = FoodItem::where('rest_id', $id)->orderBy('created_at', 'desc')->paginate(5);
+
+
+        return view('restaurants.show', compact('restaurant', 'fooditems'));
     }
 
     public function edit($id)
     {
-        $restaurants = Restaurant::find($id);
-        return view('restaurants.edit', compact('post'));
+        $restaurant = Restaurant::find($id);
+        return view('restaurants.edit', compact('restaurant'));
     }
 
     public function update(Request $request, $id)

@@ -2,23 +2,23 @@
 
       <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                  {{ __('Add New Restaurant') }}
+                  {{ __('Edit User') }}
             </h2>
       </x-slot>
 
       @section('content')
 
-            <div class="md:grid md:grid-cols-2 md:gap-6">
+            <a class="btn btn-primary" href="{{ route('admin.users.index') }}">Go Back</a>
+
+            <div class="mt-6 md:grid md:grid-cols-2 md:gap-6">
 
                   <div class="mt-5 md:mt-0 md:col-span-1">
 
                         <div class="shadow sm:rounded-md sm:overflow-hidden px-4 py-5 sm:p-6 bg-white">
 
-                              <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    {{-- Import Restaurant Form --}}
-                                    @include('restaurants.partials.restform')
-
+                              <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                                    @method('PATCH')
+                                    @include('admin.users.partials.userform')
                               </form>
 
                         </div>
@@ -30,6 +30,10 @@
 
             </div>
 
+
+
       @endsection
+
+
 
 </x-app-layout>
