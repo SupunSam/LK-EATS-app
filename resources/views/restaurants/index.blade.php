@@ -8,19 +8,23 @@
 
       @section('content')
 
-            <div class="grid grid-cols-1 xl:grid-cols-5 gap-6 sm:gap-6 mb-4">
+            @hasrole('Owner')
+            <a href="{{ route('restaurant.create') }}" class="btn btn-success" role="button">Create New Restaurant</a>
+            @endhasrole
+
+            <div class="grid grid-cols-1 xl:grid-cols-5 gap-6 sm:gap-6 my-4">
 
                   @foreach ($restaurants as $restaurant)
 
                         <div class="card shadow-sm bg-accent text-accent-content">
                               <figure>
-                                    <img src="{{ $restaurant->rest_cover }}">
+                                    <img src="{{ asset($restaurant->rest_cover) }}">
                               </figure>
                               <div class="card-body">
                                     <h2 class="card-title">{{ $restaurant->rest_name }}</h2>
                                     <p class="line-clamp-3">{{ $restaurant->rest_desc }}</p>
                                     <div class="card-actions">
-                                          <a class="btn btn-secondary" href="{{ route('restaurant.show', $restaurant->id) }}">Order Food</a>
+                                          <a class="btn btn-secondary" href="{{ route('restaurant.show', $restaurant->id) }}">Visit Shop</a>
                                     </div>
                               </div>
                         </div>

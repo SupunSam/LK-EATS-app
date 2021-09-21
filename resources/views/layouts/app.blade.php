@@ -13,9 +13,11 @@
 
       <!-- Styles -->
       <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+      @yield('pagestyles')
 
       <!-- Scripts -->
       <script src="{{ asset('js/app.js') }}" defer></script>
+      @yield('pagecdns')
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -32,23 +34,12 @@
                         {{ $header }}
 
                         <!-- Cart -->
-                        <div class="flow-root lg:ml-6">
-                              <a href="#" class="group -m-2 p-2 flex flex-row-reverse items-center">
-                                    <!-- Heroicon name: outline/shopping-bag -->
-                                    <svg class="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                          viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    <span class="mx-2 text-2xm font-bold text-gray-700 group-hover:text-gray-800">0</span>
-                                    <span class="text-2xm font-bold text-gray-700 group-hover:text-gray-800">Cart</span>
-                                    <span class="sr-only">items in cart, view bag</span>
-                              </a>
-                        </div>
+                        @include('layouts.partials.cart')
                   </div>
             </header>
 
             <!-- Body Section -->
-            <main class="flex-grow py-12 bg-gray-400">
+            <main class="flex-grow py-12 bg-gray-200">
                   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                               <x-alerts class="mb-4" :errors="$errors" />

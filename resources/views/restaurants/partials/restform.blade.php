@@ -81,6 +81,7 @@
             </input>
       </div>
 </div>
+
 {{-- Restaurant Cover --}}
 <div class="mt-6">
       <label class="block text-sm font-medium text-gray-700">
@@ -106,6 +107,7 @@
             </div>
       </div>
 </div>
+
 {{-- Form Submit --}}
 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 mt-6 rounded-box">
       <button type="submit"

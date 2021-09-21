@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+    public function dashboard(Request $request)
+    {
+        return view('admin.dashboard');
+    }
+
     public function restmanage(Request $request)
     {
         $restaurants = Restaurant::orderBy('created_at', 'desc')->paginate(5);

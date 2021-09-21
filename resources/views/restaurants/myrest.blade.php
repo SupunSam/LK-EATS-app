@@ -25,7 +25,7 @@
                                     <h2 class="card-title">{{ $fooditem->foodt_name }}</h2>
                                     <p class="line-clamp-3">{{ $fooditem->foodt_desc }}</p>
                                     <div class="card-actions">
-                                          <a class="btn btn-secondary" href="{{ route('restaurant.show', $fooditem->id) }}">Order Food</a>
+                                          <a class="btn btn-secondary" href="{{ route('restaurant.show', $fooditem->id) }}">Visit Shop</a>
                                     </div>
                               </div>
                         </div>

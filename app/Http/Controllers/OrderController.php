@@ -10,12 +10,12 @@ class OrderController extends Controller
 
     public function cart()
     {
-        return view('cart');
+        return view('checkout');
     }
 
     public function addToCart($id)
     {
-        $product = FoodItem::findOrFail($id);
+        $fooditem = FoodItem::findOrFail($id);
 
         $cart = session()->get('cart', []);
 
@@ -23,10 +23,10 @@ class OrderController extends Controller
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name" => $product->name,
+                "food_name" => $fooditem->food_name,
                 "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->image
+                "food_price" => $fooditem->food_price,
+                "food_image" => $fooditem->food_image
             ];
         }
 

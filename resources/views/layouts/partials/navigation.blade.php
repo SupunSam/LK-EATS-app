@@ -15,18 +15,33 @@
                               <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                                     {{ __('Home') }}
                               </x-nav-link>
-                              <x-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
+                              <x-nav-link :href="route('BrowseRestaurants')" :active="request()->routeIs('BrowseRestaurants')">
                                     {{ __('Restaurants') }}
                               </x-nav-link>
+                              @hasrole('Owner')
                               <x-nav-link :href="route('restaurant.myrest')" :active="request()->routeIs('restaurant.myrest')">
                                     {{ __('My Restaurant') }}
                               </x-nav-link>
-                              <x-nav-link :href="route('foods')" :active="request()->routeIs('foods')">
-                                    {{ __('Food') }}
+                              @endhasrole
+                              <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                                    {{ __('About Us') }}
                               </x-nav-link>
                               <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                                     {{ __('Contact') }}
                               </x-nav-link>
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                              <form action="/search" method="POST" role="search" class="flex justify-center bg-white rounded-xl border-2 my-4 overflow-hidden">
+                                    @csrf
+                                    <input type="search" placeholder="Search Food..." name="searchq"
+                                          class="block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2">
+                                    <button type="submit">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 my-auto m-2" style="color: gray" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                          </svg>
+                                    </button>
+                              </form>
                         </div>
                   </div>
 
@@ -50,10 +65,11 @@
                                     </x-slot>
 
                                     <x-slot name="content">
-
+                                          @role('Admin')
                                           <x-dropdown-link :href="route('admin.dashboard')">
                                                 {{ __('Administrator Tools') }}
                                           </x-dropdown-link>
+                                          @endrole
 
                                           <!-- Authentication -->
                                           <form method="POST" action="{{ route('logout') }}">
@@ -68,11 +84,12 @@
                         </div>
 
                   @else
-                        <div class="sm:flex gap-4 sm:items-center sm:ml-6">
-                              <a href="{{ route('register') }}" class="btn btn-sm btn-info">Login</a>
-                              <a href="{{ route('login') }}" class="btn btn-sm btn-success">Register</a>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                              <div class="sm:flex gap-4 sm:items-center sm:ml-6">
+                                    <a href="{{ route('login') }}" class="btn btn-sm btn-info">Login</a>
+                                    <a href="{{ route('register') }}" class="btn btn-sm btn-success">Register</a>
+                              </div>
                         </div>
-
                   @endauth
 
                   <!-- Hamburger -->
@@ -96,14 +113,14 @@
                   <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                   </x-responsive-nav-link>
-                  <x-responsive-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
+                  <x-responsive-nav-link :href="route('BrowseRestaurants')" :active="request()->routeIs('BrowseRestaurants')">
                         {{ __('Restaurants') }}
                   </x-responsive-nav-link>
                   <x-responsive-nav-link :href="route('restaurant.myrest')" :active="request()->routeIs('restaurant.myrest')">
                         {{ __('My Restaurant') }}
                   </x-responsive-nav-link>
-                  <x-responsive-nav-link :href="route('foods')" :active="request()->routeIs('foods')">
-                        {{ __('Food') }}
+                  <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                        {{ __('About Us') }}
                   </x-responsive-nav-link>
                   <x-responsive-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                         {{ __('Contact') }}
@@ -128,7 +145,16 @@
                         </div>
                   </div>
             @else
-                  <div></div>
+                  <div class="pt-4 pb-1 border-t border-gray-200">
+                        <div class="px-4">
+                              <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                                    {{ __('Login') }}
+                              </x-responsive-nav-link>
+                              <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('Register')">
+                                    {{ __('Register') }}
+                              </x-responsive-nav-link>
+                        </div>
+                  </div>
             @endauth
       </div>
 </nav>

@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\FoodItem;
+use App\Models\Restaurant;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FoodItemController extends Controller
 {
+    use UploadTrait;
+
     function __construct()
     {
         $this->middleware('permission:fooditem-list|fooditem-create|fooditem-edit|fooditem-delete', ['only' => ['index', 'show']]);
@@ -26,7 +30,9 @@ class FoodItemController extends Controller
 
     public function create()
     {
-        return view('fooditems.create');
+        $owner = Auth::user()->id;
+        $restaurant = Restaurant::where('user_id', $owner)->first();
+        return view('fooditems.create', compact('restaurant'));
     }
 
     public function store(Request $request)
@@ -39,7 +45,7 @@ class FoodItemController extends Controller
             'food_image' => 'required|max:255'
         ]);
 
-        FoodItem::create($request->all());
+        // FoodItem::create($request->all());
 
         $newFood = new FoodItem;
 
@@ -65,14 +71,16 @@ class FoodItemController extends Controller
         }
 
         $newFood->user_id = Auth::user()->id;
+        $newFood->rest_id = (Restaurant::firstWhere('user_id', $newFood->user_id))->id;
         $newFood->save();
 
-        return redirect()->route('fooditems.index')
+        return redirect()->route('restaurant.show', $newFood->rest_id)
             ->with('success', 'Food Item created successfully.');
     }
 
-    public function show(FoodItem $fooditem)
+    public function show($id)
     {
+        $fooditem = FoodItem::find($id);
         return view('fooditems.show', compact('fooditem'));
     }
 
@@ -104,6 +112,4 @@ class FoodItemController extends Controller
         return redirect()->route('fooditems.index')
             ->with('success', 'FoodItem deleted successfully');
     }
-
-    
 }

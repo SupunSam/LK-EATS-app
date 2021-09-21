@@ -59,10 +59,7 @@
                   @endforeach
             </table>
 
-
             {!! $fooditems->links() !!}
-
-
 
       @endsection
 

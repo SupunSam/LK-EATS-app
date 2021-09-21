@@ -8,7 +8,7 @@
 
       @section('content')
 
-            <a class="btn btn-primary" href="{{ route('admin.food.manage') }}">Go Back</a>
+            <a class="btn btn-primary" href="{{ route('restaurant.show', $restaurant->id) }}">Go Back</a>
 
             <div class="mt-6 md:grid md:grid-cols-2 md:gap-6">
 

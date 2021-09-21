@@ -5,7 +5,7 @@
 
       <div class="w-full carousel">
             <div id="item1" class="w-full carousel-item">
-                  <img src="https://picsum.photos/id/500/800/300" class="w-full">
+                  <img src="{{ asset('img/food1.jpg') }}" class="w-full">
             </div>
             <div id="item2" class="w-full carousel-item">
                   <img src="https://picsum.photos/id/501/800/300" class="w-full">
@@ -51,56 +51,28 @@
 
       <ul class="w-full steps">
             <li class="step step-primary">Register</li>
-            <li class="step step-primary">Choose plan</li>
-            <li class="step">Purchase</li>
-            <li class="step">Receive Product</li>
+            <li class="step step-primary">Choose Food</li>
+            <li class="step">Place the Order</li>
+            <li class="step">Collect Product</li>
       </ul>
 
 </div>
 
 {{-- Customer Feedback --}}
-<div class="card shadow-xl image-full">
-      <figure>
-            <img src="https://picsum.photos/id/1005/400/250">
-      </figure>
-      <div class="justify-end card-body">
-            <h2 class="card-title">Image overlay</h2>
-            <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae
-                  voluptates incidunt
-                  iure
-                  sapiente.</p>
-            <div class="card-actions">
-                  <button class="btn btn-primary">Get Started</button>
+
+@foreach ($restaurants as $restaurant)
+
+      <div class="card shadow-xl image-full">
+            <figure>
+                  <img src="{{ asset($restaurant->rest_cover) }}">
+            </figure>
+            <div class="justify-end card-body">
+                  <h2 class="card-title">{{ $restaurant->rest_name }}</h2>
+                  <p>{{ $restaurant->rest_desc }}</p>
+                  <div class="card-actions">
+                        <a class="btn btn-primary" href="{{ route('restaurant.show', $restaurant->id) }}">Visit Shop</a>
+                  </div>
             </div>
       </div>
-</div>
-<div class="card shadow-xl image-full">
-      <figure>
-            <img src="https://picsum.photos/id/1005/400/250">
-      </figure>
-      <div class="justify-end card-body">
-            <h2 class="card-title">Image overlay</h2>
-            <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae
-                  voluptates incidunt
-                  iure
-                  sapiente.</p>
-            <div class="card-actions">
-                  <button class="btn btn-primary">Get Started</button>
-            </div>
-      </div>
-</div>
-<div class="card shadow-xl image-full">
-      <figure>
-            <img src="https://picsum.photos/id/1005/400/250">
-      </figure>
-      <div class="justify-end card-body">
-            <h2 class="card-title">Image overlay</h2>
-            <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae
-                  voluptates incidunt
-                  iure
-                  sapiente.</p>
-            <div class="card-actions">
-                  <button class="btn btn-primary">Get Started</button>
-            </div>
-      </div>
-</div>
+
+@endforeach

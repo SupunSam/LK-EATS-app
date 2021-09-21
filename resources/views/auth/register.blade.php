@@ -27,6 +27,13 @@
                         <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                   </div>
 
+                  <!-- Name -->
+                  <div class="mt-4">
+                        <x-label for="owneruser" :value="__('Are you registering as Restaurant')" />
+
+                        <x-input id="owneruser" class="form-checkbox h-5 w-5 text-orange-600 block mt-1" type="checkbox" name="owneruser" autofocus />
+                  </div>
+
                   <!-- Password -->
                   <div class="mt-4">
                         <x-label for="password" :value="__('Password')" />

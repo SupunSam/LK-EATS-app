@@ -12,47 +12,77 @@
             <a href="{{ route('fooditems.create') }}" class="btn btn-success" role="button">Create New FoodItem</a>
 
             <div class="overflow-x-auto my-6">
-                  <table class="table w-full border-b border-gray-200 shadow">
-                        <thead class="bg-prime">
-                              <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Address</th>
-                                    <th>City</th>
-                                    <th>Charge</th>
-                                    <th>Desc</th>
-                                    <th>Web</th>
-                                    <th>Logo</th>
-                                    <th>Actions</th>
+
+                  <table class="min-w-full leading-normal rounded-lg">
+                        <thead>
+                              <tr class="rounded-lg">
+                                    <th class="px-5 py-3 border-b-2 border-gray-400 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                          #&nbsp;&nbsp;Logo
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-400 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-400 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Category
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-400 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Price
+                                    </th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-400 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions
+                                    </th>
                               </tr>
                         </thead>
-
                         <tbody>
                               @foreach ($fooditems as $fooditem)
                                     <tr>
-                                          <td>{{ $fooditem->rest_id }}</td>
-                                          <td>{{ $fooditem->rest_name }}</td>
-                                          <td>{{ $fooditem->rest_category }}</td>
-                                          <td>{{ $fooditem->rest_address }}</td>
-                                          <td>{{ $fooditem->rest_city }}</td>
-                                          <td>{{ $fooditem->rest_charge }}</td>
-                                          <td>{{ $fooditem->rest_desc }}</td>
-                                          <td>{{ $fooditem->rest_web }}</td>
-                                          <td><img src="{{ $fooditem->rest_logo }}"></td>
-                                          <td><img src="{{ $fooditem->rest_cover }}"></td>
-                                          <td>
-                                                <a class="btn btn-sm btn-info" href="{{ route('admin.rest.show', $user->id) }}">Show</a>
-                                                <a class="btn btn-sm btn-primary" href="{{ route('admin.rest.edit', $user->id) }}">Edit</a>
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['admin.rest.destroy', $user->id], 'style' => 'display:inline']) !!}
-                                                {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
-                                                {!! Form::close() !!}
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <div class="flex items-center">
+                                                      <div>
+                                                            <p class="text-gray-900 whitespace-no-wrap font-semibold">
+                                                                  {{ $fooditem->id }}
+                                                            </p>
+                                                      </div>
+                                                      <div class="flex-shrink-0 w-10 h-10 ml-3">
+                                                            <img class="w-10 h-10 rounded-full" src="{{ asset($fooditem->food_image) }}" alt="" />
+                                                      </div>
+                                                </div>
+                                          </td>
+
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap">{{ $fooditem->food_name }}</p>
+                                          </td>
+
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap">
+                                                      {{ $fooditem->food_cat }}
+                                                </p>
+                                          </td>
+
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap">
+                                                      {{ $fooditem->food_price }}
+                                                </p>
+                                          </td>
+
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap">
+                                                      <a class="btn btn-sm btn-info" href="{{ route('fooditems.show', $fooditem->id) }}">Show</a>
+                                                      <a class="btn btn-sm btn-primary" href="{{ route('fooditems.edit', $fooditem->id) }}">Edit</a>
+                                                      <button type="button" class="btn btn-sm btn-danger"
+                                                            onclick="event.preventDefault();document.getElementById('delete-user-form-{{ $fooditem->id }}').submit()">
+                                                            Delete
+                                                      </button>
+                                                      {{-- Delete Form --}}
+                                                <form id="delete-user-form-{{ $fooditem->id }}" action="{{ route('fooditems.destroy', $fooditem->id) }}" method="post">
+                                                      @csrf
+                                                      @method('DELETE')
+                                                </form>
+                                                </p>
                                           </td>
                                     </tr>
                               @endforeach
+
                         </tbody>
 
                   </table>
+
             </div>
 
             {!! $fooditems->links() !!}

@@ -21,9 +21,17 @@ class RestaurantController extends Controller
         return view('restaurants.index')->with('restaurants', $restaurants);
     }
 
+    public function restbrowser()
+    {
+        $restaurants = Restaurant::orderBy('created_at', 'desc')->paginate(5);
+        return view('restaurants.index')->with('restaurants', $restaurants);
+    }
+
     public function myrest()
     {
-        return view('restaurants.myrest');
+        $owner = Auth::user()->id;
+        $restaurants = Restaurant::where('user_id', $owner)->orderBy('created_at', 'desc')->paginate(5);
+        return view('restaurants.index')->with('restaurants', $restaurants);
     }
 
     public function create()
@@ -99,7 +107,6 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::find($id);
         $fooditems = FoodItem::where('rest_id', $id)->orderBy('created_at', 'desc')->paginate(5);
-
 
         return view('restaurants.show', compact('restaurant', 'fooditems'));
     }
