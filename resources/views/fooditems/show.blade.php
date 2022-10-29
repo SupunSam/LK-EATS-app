@@ -16,7 +16,7 @@
                         </figure>
                         <div class="max-w-md card-body">
                               <h2 class="card-title">{{ $fooditem->food_name }}</h2>
-                              <p class="text-xl font-semibold">{{ $fooditem->food_cat }}</p>
+                              <p class="text-xl font-semibold">{{ $fooditem->food_category }}</p>
                               <p class="text-xl font-semibold">{{ $fooditem->food_price }}</p>
                               <p class="text-xl font-semibold">{{ $fooditem->food_desc }}</p>
                               <div class="card-actions">

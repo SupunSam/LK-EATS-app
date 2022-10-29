@@ -91,7 +91,7 @@
                               <tr class="rounded-lg">
                                     <td class="px-5 py-3 border-b-2 border-gray-400 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                           <a href="{{ url('/') }}" class="btn btn-warning">Continue Shopping</a>
-                                          <button class="btn btn-success">Checkout</button>
+                                          <a href="{{ route('newOrder') }}" type="submit" class="btn btn-success">Checkout</a>
                                     </td>
                                     <td class="px-5 py-3 border-b-2 border-gray-400 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     </td>

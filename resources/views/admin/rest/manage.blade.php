@@ -20,7 +20,6 @@
                                     <th>Category</th>
                                     <th>Address</th>
                                     <th>City</th>
-                                    <th>Charge</th>
                                     <th>Desc</th>
                                     <th>Web</th>
                                     <th>Logo</th>
@@ -36,7 +35,6 @@
                                           <td>{{ $restaurant->rest_category }}</td>
                                           <td>{{ $restaurant->rest_address }}</td>
                                           <td>{{ $restaurant->rest_city }}</td>
-                                          <td>{{ $restaurant->rest_charge }}</td>
                                           <td>{{ $restaurant->rest_desc }}</td>
                                           <td>{{ $restaurant->rest_web }}</td>
                                           <td><img src="{{ $restaurant->rest_logo }}"></td>

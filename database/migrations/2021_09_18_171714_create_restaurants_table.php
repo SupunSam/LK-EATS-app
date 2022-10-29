@@ -26,8 +26,6 @@ class CreateRestaurantsTable extends Migration
             $table->string('rest_address');
             // Restaurant City
             $table->string('rest_city');
-            // Restaurant Charge
-            $table->string('rest_charge')->nullable();
             // Restaurant Description
             $table->text('rest_desc')->nullable();
             // Restaurant Website

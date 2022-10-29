@@ -42,6 +42,7 @@
             <main class="flex-grow py-12 bg-gray-200">
                   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                              <!-- Alerts -->
                               <x-alerts class="mb-4" :errors="$errors" />
 
                               @yield('content')
@@ -55,11 +56,13 @@
                   @include('layouts.partials.footer')
             </footer>
 
-            {{-- Scripts --}}
-            @yield('scripts')
+
 
       </div>
-      @include('layouts.partials.scripts')
+
+      {{-- Scripts --}}
+      @yield('scripts')
+
 </body>
 
 </html>

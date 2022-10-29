@@ -7,9 +7,9 @@
       </x-slot>
 
       @section('content')
-            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-6">
-                  @include('layouts.home',['restaurants' => $restaurants])
-            </div>
+
+            @include('layouts.home',['restaurants' => $restaurants])
+
       @endsection
 
 </x-app-layout>

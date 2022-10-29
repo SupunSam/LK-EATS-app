@@ -40,26 +40,27 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-
 Route::post('/search', [HomeController::class, 'search'])
     ->name('search');
-
-// Route::any('/search', function () {
-//     $q = Input::get('searchq');
-//     $fooditems = FoodItem::where('food_name', 'LIKE', '%' . $q . '%')->orWhere('email', 'LIKE', '%' . $q . '%')->get();
-//     if (count($fooditems) > 0)
-//         return view('search')->with($fooditems, $q);
-//     else
-//         return view('search')->with('success', 'Whoops !!..No Details found. Try to search again !');
-// });
 
 //For LoggedIn Users
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('/orders', [OrderController::class, 'orders'])
+        ->name('orders');
+
+    Route::get('/orders/{id}', [OrderController::class, 'show'])
+        ->name('orders.show');
+
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])
+        ->name('orders.destroy');
+
     // Profile Link
-    Route::get('/profile', function () {
-        return view('users.profile');
-    })->name('profile');
+    Route::get('/profile', [HomeController::class, 'profile'])
+        ->name('profile');
+
+    Route::patch('/profileUpdate', [HomeController::class, 'profileUpdate'])
+        ->name('profileUpdate');
 
     // Restaurant Routes
     Route::resource('restaurant', RestaurantController::class);
@@ -73,6 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('add-to-cart/{id}', [OrderController::class, 'addToCart'])->name('add.to.cart');
     Route::patch('update-cart', [OrderController::class, 'update'])->name('update.cart');
     Route::delete('remove-from-cart', [OrderController::class, 'remove'])->name('remove.from.cart');
+
+    // Order Placement
+    Route::get('newOrder', [OrderController::class, 'newOrder'])->name('newOrder');
 });
 
 // Admin Routes

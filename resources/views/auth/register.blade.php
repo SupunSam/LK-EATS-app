@@ -4,7 +4,7 @@
                   <a href="{{ url('/') }}">
                         <x-application-logo width="140" height="140" />
                   </a>
-                  <h1 class="text-4xl subpixel-antialiased font-semibold">LK-EATS</h1>
+                  <h1 class="text-4xl subpixel-antialiased font-semibold">EATS.LK</h1>
             </x-slot>
 
             <!-- Validation Errors -->

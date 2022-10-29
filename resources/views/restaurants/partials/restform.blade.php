@@ -24,12 +24,6 @@
                   <input type="text" name="rest_city" id="rest_city"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
-            {{-- Restaurant Charge --}}
-            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label for="rest_charge" class="block text-sm font-medium text-gray-700">Delivery Charge</label>
-                  <input type="text" name="rest_charge" id="rest_charge"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-            </div>
 
       </div>
 </div>

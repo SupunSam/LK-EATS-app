@@ -27,8 +27,9 @@
             </div>
             {{-- Food Category --}}
             <div class="col-span-6 sm:col-span-3">
-                  <label for="food_cat" class="block text-sm font-medium text-gray-700">Food Category</label>
-                  <input type="text" name="food_cat" id="food_cat" value="{{ old('food_cat') }} @isset($fooditem){{ $fooditem->food_cat }} @endisset"
+                  <label for="food_category" class="block text-sm font-medium text-gray-700">Food Category</label>
+                  <input type="text" name="food_category" id="food_category"
+                        value="{{ old('food_category') }} @isset($fooditem){{ $fooditem->food_category }} @endisset"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
             {{-- Food Description --}}

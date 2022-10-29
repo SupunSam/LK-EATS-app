@@ -71,6 +71,14 @@
                                           </x-dropdown-link>
                                           @endrole
 
+                                          <x-dropdown-link :href="route('profile')">
+                                                {{ __('Profile') }}
+                                          </x-dropdown-link>
+
+                                          <x-dropdown-link :href="route('orders')">
+                                                {{ __('Orders') }}
+                                          </x-dropdown-link>
+
                                           <!-- Authentication -->
                                           <form method="POST" action="{{ route('logout') }}">
                                                 @csrf

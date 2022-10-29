@@ -38,7 +38,7 @@ class FoodItemController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'food_cat' => 'required|max:255',
+            'food_category' => 'required|max:255',
             'food_name' => 'required|max:255',
             'food_desc' => 'required|max:255',
             'food_price' => 'required',
@@ -49,7 +49,7 @@ class FoodItemController extends Controller
 
         $newFood = new FoodItem;
 
-        $newFood->food_cat = $request->input('food_cat');
+        $newFood->food_category = $request->input('food_category');
         $newFood->food_name = $request->input('food_name');
         $newFood->food_desc = $request->input('food_desc');
         $newFood->food_price = $request->input('food_price');
@@ -92,7 +92,7 @@ class FoodItemController extends Controller
     public function update(Request $request, FoodItem $fooditem)
     {
         request()->validate([
-            'food_cat' => 'required|max:255',
+            'food_category' => 'required|max:255',
             'food_name' => 'required|max:255',
             'food_desc' => 'required|max:255',
             'food_price' => 'required',

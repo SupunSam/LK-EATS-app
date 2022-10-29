@@ -27,9 +27,9 @@
                               </figure>
                               <div class="card-body">
                                     <h2 class="card-title">{{ $fooditem->food_name }}</h2>
-                                    <p class="line-clamp-3">{{ $fooditem->foodt_desc }}</p>
+                                    <p class="line-clamp-3">{{ $fooditem->food_desc }}</p>
                                     <div class="card-actions">
-                                          <a class="btn btn-secondary" href="{{ route('add.to.cart', $fooditem->id) }}">Add to Cart</a>
+                                          <a class="btn btn-secondary" href="{{ route('add.to.cart', [$fooditem->id, $restaurant->id]) }}">Add to Cart</a>
                                     </div>
                               </div>
                         </div>

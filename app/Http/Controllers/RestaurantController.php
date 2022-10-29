@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Order;
 use App\Models\FoodItem;
 use App\Models\Restaurant;
 use App\Traits\UploadTrait;
@@ -30,8 +32,18 @@ class RestaurantController extends Controller
     public function myrest()
     {
         $owner = Auth::user()->id;
+        $data = Order::where('user_id', $owner)->first();
+
         $restaurants = Restaurant::where('user_id', $owner)->orderBy('created_at', 'desc')->paginate(5);
-        return view('restaurants.index')->with('restaurants', $restaurants);
+        $restorders = Order::where('user_id', $owner)->orderBy('created_at', 'desc')->paginate(5);
+
+        if ($data == null) {
+            $client = null;
+        } else {
+            $client = User::where('id', $data->user_id)->first();
+        }
+
+        return view('restaurants.myrest', compact('restaurants', 'client', 'restorders'));
     }
 
     public function create()
@@ -46,7 +58,6 @@ class RestaurantController extends Controller
             'rest_category' => 'required|max:100',
             'rest_address' => 'required|max:255',
             'rest_city' => 'required|max:50',
-            'rest_charge' => 'required|max:255',
             'rest_desc' => 'required|max:255',
             'rest_web' => 'required|max:255',
             'rest_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -59,7 +70,6 @@ class RestaurantController extends Controller
         $newRest->rest_category = $request->input('rest_category');
         $newRest->rest_address = $request->input('rest_address');
         $newRest->rest_city = $request->input('rest_city');
-        $newRest->rest_charge = $request->input('rest_charge');
         $newRest->rest_desc = $request->input('rest_desc');
         $newRest->rest_web = $request->input('rest_web');
 

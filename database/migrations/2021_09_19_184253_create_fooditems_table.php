@@ -17,7 +17,7 @@ class CreateFooditemsTable extends Migration
             $table->id();
             $table->integer('rest_id');
             $table->integer('user_id');
-            $table->string('food_cat');
+            $table->string('food_category');
             $table->string('food_name');
             $table->string('food_desc');
             $table->integer('food_price');
